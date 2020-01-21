@@ -62,7 +62,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     'dist/bundle.js': [
-                        'dist/assets/index.js',
+                        'src/index.js',
                         'src/components/**/*.js',
                         'src/components/**/*.html'
                     ]
