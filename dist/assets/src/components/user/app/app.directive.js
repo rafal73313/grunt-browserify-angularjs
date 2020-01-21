@@ -1,5 +1,5 @@
 require('./index')
-    .directive('waApp', function() {
+    .directive('waApp', ['waUserLoginService', function(waUserLoginService) {
         return {
             templateUrl: 'src/components/user/app/app.template.html',
             link: function (scope, el, attr) {
@@ -7,4 +7,4 @@ require('./index')
                 scope.title = 'AngularJS & Grunt & Browserify'
             }
         }
-    })
+    }])
