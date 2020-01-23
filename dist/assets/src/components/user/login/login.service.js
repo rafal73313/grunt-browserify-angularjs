@@ -1,7 +1,7 @@
 require('./index')
     .service('waUserLoginService', [function () {
         this.userLoggedIn = false;
-        this.username = '';
+        this.username = 'NONE';
 
         this.login = function (setUsernameCallback) {
             console.log('login() called on service!');

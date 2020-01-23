@@ -1,6 +1,5 @@
-require('./index');
 require('./index')
-    .directive('waUserLogin', ['waUserLoginService', function (waUserLoginService) {
+    .directive('waUserLogin', ['waUserLoginService', 'waParagraphService', function (waUserLoginService, waParagraphService) {
         return {
             templateUrl: 'src/components/user/login/login.template.html',
             link: function(scope, el, attrs) {
@@ -12,6 +11,7 @@ require('./index')
 
                 scope.onUserLogin = function() {
                     console.log('clicked onUserLogin()');
+                    console.log('from waParagraphService.getName(): ', waParagraphService.getName());
 
                     waUserLoginService.login(scope.setUsername);
 

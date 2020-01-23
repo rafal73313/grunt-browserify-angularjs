@@ -25,6 +25,13 @@ module.exports = function(grunt) {
                         dest: 'dist/',
                         flatten: true,
                         filter: 'isFile'
+                    },
+                    {
+                        expand: true,
+                        src: 'src/**.css',
+                        dest: 'dist/',
+                        flatten: true,
+                        filter: 'isFile'
                     }
                 ]
             }
@@ -38,7 +45,7 @@ module.exports = function(grunt) {
                 files: {
                     'dist/index.html': [
                         'dist/bundle.js',
-                        'dist/assets/**/*.css'
+                        'dist/**.css'
                     ],
                 }
             }
@@ -50,6 +57,7 @@ module.exports = function(grunt) {
                     browserifyOptions: {
                         debug: true
                     },
+                    debug: true,
                     transform: [
                         ['browserify-ng-html2js', {
                                 module: 'wa',
@@ -63,9 +71,24 @@ module.exports = function(grunt) {
                 files: {
                     'dist/bundle.js': [
                         'src/index.js',
-                        'src/components/**/*.js',
-                        'src/components/**/*.html'
+                        'src/**/*.html'
                     ]
+                }
+            }
+        },
+
+        extract_sourcemap: {
+            options: { 'removeSourcesContent': true },
+            files: {
+                'dist': ['dist/bundle.js']
+            }
+        },
+
+        exorcise: {
+            bundle: {
+                options: {},
+                files: {
+                    'dist/bundle.js.map': ['dist/bundle.js'],
                 }
             }
         },
@@ -109,12 +132,15 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-injector');
     grunt.loadNpmTasks('grunt-browserify');
-    grunt.loadNpmTasks('grunt-contrib-watch')
-    grunt.loadNpmTasks('grunt-contrib-connect')
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-extract-sourcemap');
+    grunt.loadNpmTasks('grunt-exorcise');
 
     grunt.registerTask('default', [
         'copy:debug',
         'browserify:debug',
+        'exorcise',
         'injector:debug',
         'connect'
     ])

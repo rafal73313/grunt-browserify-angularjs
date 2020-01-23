@@ -1,11 +1,11 @@
-<div>
-    <h3>Today: {{ date }}</h3>
-    <h2>Count: {{ count }}</h2>
+<div class="wa-counter">
+    <h2>Counter: {{ count }}</h2>
     <div>
         <button ng-click="increment()">increment</button> |
         <button ng-click="decrement()">decrement</button>
     </div>
+    <hr />
     <div>
-        <wa-user-login></wa-user-login>
+        <button ng-click="btnClickLogin()">login from counter</button>
     </div>
 </div>
