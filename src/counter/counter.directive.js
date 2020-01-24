@@ -1,8 +1,11 @@
-var angular = require('angular');
-module.exports = angular.module('wa.counter.directives', [])
-    .directive('waCounter', [function () {
-        return {
-            templateUrl: 'src/counter/counter.template.html',
-            controller: 'waCounterCtrl'
-        }
-    }]);
+import angular from 'angular';
+
+const waCounter = function () {
+    'ngInject'
+    return {
+        templateUrl: 'src/counter/counter.template.html',
+        controller: 'waCounterController'
+    }
+}
+
+export default waCounter;

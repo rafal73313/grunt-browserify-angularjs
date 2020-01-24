@@ -1,17 +1,20 @@
-var angular = require('angular');
-module.exports = angular.module('wa.login.directives', [])
-    .directive('waLogin', ['waLoginService', function (waLoginService) {
-        return {
-            templateUrl: 'src/login/login.template.html',
-            link: function(scope, el, attrs) {
-                console.log('hello from waLogin directive');
+import waLoginService from "./login.service";
 
-                scope.greeting = 'Hello';
-                scope.waLoginService = waLoginService;
+const waLogin = function () {
+    'ngInject'
+    return {
+        templateUrl: 'src/login/login.template.html',
+        link: function(scope, el, attrs) {
+            console.log('hello from waLogin directive');
 
-                scope.loginBtnClick = function () {
-                    waLoginService.performLogin();
-                }
+            scope.greeting = 'Hello';
+            // scope.waLoginService = waLoginService;
+
+            scope.loginBtnClick = function () {
+                // waLoginService.performLogin();
             }
         }
-    }]);
+    }
+}
+
+export default waLogin;

@@ -60,23 +60,29 @@ module.exports = function(grunt) {
                     debug: true,
                     transform: [
                         ['browserify-ng-html2js', {
-                                module: 'wa',
-                                extension: 'html',
-                                baseDir: './',
-                                requireAngular: false
-                            }
-                        ]
+                            module: 'wa',
+                            extension: 'html',
+                            baseDir: './',
+                            requireAngular: false
+                        }],
+                        ["babelify", {
+                            presets: ["@babel/env"],
+                            plugins: [
+                                ["angularjs-annotate", { "explicitOnly" : true}]
+                            ]
+                        }],
                     ]
                 },
                 files: {
                     'dist/bundle.js': [
-                        'src/index.js',
+                        'src/app.js',
                         'src/**/*.html'
                     ]
                 }
             }
         },
 
+        /*
         extract_sourcemap: {
             options: { 'removeSourcesContent': true },
             files: {
@@ -92,6 +98,7 @@ module.exports = function(grunt) {
                 }
             }
         },
+        */
 
         watch: {
             // gruntfile: {
@@ -140,7 +147,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', [
         'copy:debug',
         'browserify:debug',
-        'exorcise',
+        // 'exorcise',
         'injector:debug',
         'connect'
     ])

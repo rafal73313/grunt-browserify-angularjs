@@ -1,14 +1,17 @@
-var angular = require('angular');
-module.exports = angular.module('wa.login.services', [])
-    .service('waLoginService', [function () {
+const waLoginService = function ($scope, $window) {
+    'ngInject'
 
-        var loginStatus = 'not logged in';
+    var loginStatus = 'not logged in';
 
-        this.performLogin = function () {
-            loginStatus = 'logged in';
-        }
+    this.performLogin = function () {
+        console.log('loginService() - performed login!');
+        loginStatus = 'logged in';
+    }
 
-        this.getLoginStatus = function () {
-            return loginStatus;
-        }
-    }])
+    this.getLoginStatus = function () {
+        return loginStatus;
+    }
+
+}
+
+export default waLoginService;
