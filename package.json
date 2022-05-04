@@ -4,7 +4,7 @@
   "description": "",
   "main": "Gruntfile.js",
   "dependencies": {
-    "angular": "^1.7.9",
+    "angular": "^1.8.3",
     "jquery": "^3.4.1",
     "moment": "^2.24.0"
   },
